@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<!-- Head -->
+<%- include('../partials/head.ejs') %> 
+
+<body>
+
+    <!-- Header -->
+    <%- include('../partials/header.ejs') %> 
+
+    <main class="main-productEdit">
+        
+        <h3 class="register-title">Edicion de producto</h3>        
+    
+        <form class="productEdit-form" action="/products/edit/<%= product.id %>?_method=PUT"  method="POST" enctype="multipart/form-data">       
+            
+            <div class="form-div">
+                <label for="name" class="form-label">Nombre del producto</label>
+                <input type="text" name="name" id="name" value= "<%= product.name %>" required>
+            </div>   
+            
+            <div class="form-div">
+                <label for="description" class="form-label">Descripción</label>
+                <input type="text" name="description" id="description" value= "<%= product.description %>" required>
+            </div>               
+        
+            <div class="form-div">
+                <label for="price" class="form-label">Precio</label>
+                <input type="text" name="price" id="price" value= "<%= product.price %>" required>
+            </div>  
+            
+            <div class="form-div">
+                <label>Seleccionar imagen</label>
+                <input type="file" name="image" accept="jpg, png">
+            </div>
+
+            <div class="form-div">
+                <label>Seleccione categoria</label>
+                <select name="categoryId" id="categoryId">                  
+                    <% for (let i = 0; i < categories.length; i++) {%> 
+                        <option value="<%=categories[i].id%>">
+                            <%=categories[i].name%>
+                        </option>
+                        <% }; %> 
+                </select>
+            </div>
+
+            <div class="form-div">
+                <label>Seleccione color</label>
+            <select name="colorId" id="colorId">
+                <% for (let i = 0; i < colors.length; i++) {%> 
+                    <option value="<%=colors[i].id%>">
+                        <%=colors[i].name%>
+                    </option>
+                    <% }; %> 
+            </select>
+            </div>
+
+            <div class="form-div">
+                <label for="discount" class="form-label">Descuento</label>
+                <input type="number" name="discount" id="discount" value= "<%= product.discount %>" required>
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit" class="submit-button">Guardar cambios</button>
+            </div>
+    
+        </form>
+    
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer.ejs') %> 
+    
+</body>
+</html>
